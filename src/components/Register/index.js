@@ -110,7 +110,6 @@ class Register extends Component {
         <label className="input-label" htmlFor="gender">
           GENDER
         </label>
-        let gender
         <select
           id="gender"
           name="gender"
