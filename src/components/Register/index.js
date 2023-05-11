@@ -125,7 +125,7 @@ class Register extends Component {
     )
   }
 
-  submitForm = event => {
+  submitForm = async event => {
     event.preventDefault()
     const {username, password, name, gender, location} = this.state
     const userDetails = {
@@ -135,8 +135,13 @@ class Register extends Component {
       gender,
       location,
     }
-    const url = ''
-    const options = {method: 'POST', body: JSON.stringify(userDetails)}
+    const url = 'https://auth-ruv9.onrender.com/register'
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(userDetails),
+    }
+    const response = await fetch(url, options)
+    console.log(response)
   }
 
   render() {
