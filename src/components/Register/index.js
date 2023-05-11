@@ -125,6 +125,16 @@ class Register extends Component {
     )
   }
 
+  onSubmitFailure = () => {
+    const {history} = this.props
+    history.push('/register')
+  }
+
+  onSuccessHandle = () => {
+    const {history} = this.props
+    history.push('/login')
+  }
+
   submitForm = async event => {
     event.preventDefault()
     const {username, password, name, gender, location} = this.state
@@ -141,7 +151,12 @@ class Register extends Component {
       body: JSON.stringify(userDetails),
     }
     const response = await fetch(url, options)
-    console.log(response)
+    const data = await response.json()
+    if (response.ok === true) {
+      this.onSuccessHandle(data)
+    } else {
+      this.onSubmitFailure(data.error_msg)
+    }
   }
 
   render() {
